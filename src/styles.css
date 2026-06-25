@@ -442,8 +442,7 @@ p {
   font-weight: 900;
 }
 
-.back-price,
-.barcode {
+.back-price {
   position: absolute;
   z-index: 2;
 }
@@ -460,22 +459,6 @@ p {
   color: #24150e;
   font-size: 22px;
   font-weight: 950;
-}
-
-.barcode {
-  right: clamp(16px, 2vw, 30px);
-  bottom: clamp(86px, 10vw, 132px);
-  left: auto;
-  width: clamp(86px, 10vw, 128px);
-  overflow: hidden;
-  padding: 34px 12px 10px;
-  background:
-    repeating-linear-gradient(90deg, #17120d 0 3px, #fff 3px 6px, #17120d 6px 8px, #fff 8px 13px),
-    #fff;
-  color: #17120d;
-  font-size: 12px;
-  font-weight: 850;
-  text-align: center;
 }
 
 .section {
@@ -855,10 +838,6 @@ p {
     display: none;
   }
 
-  .barcode {
-    display: none;
-  }
-
   .feature-grid {
     grid-template-columns: 1fr;
   }
@@ -968,10 +947,6 @@ p {
     width: 58px;
     height: 38px;
     font-size: 15px;
-  }
-
-  .barcode {
-    display: none;
   }
 
   .price-row {

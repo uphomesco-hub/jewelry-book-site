@@ -220,7 +220,6 @@ function ProductBook() {
     <div className="book-stage" aria-label="Hoarder of the Rings fake book product">
       <div className="book-back">
         <span className="back-price">$36.99</span>
-        <span className="barcode">0 35540 65020</span>
       </div>
       <div className="book-spine">
         <span>HOARDER OF THE RINGS</span>
