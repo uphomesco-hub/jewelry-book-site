@@ -6,11 +6,12 @@ import "./styles.css";
 const productNotes = [
   "A fake display book made for rings and small keepsakes.",
   "Designed to blend into a shelf, nightstand, office, or closet.",
-  "Introductory product run: 300 books planned.",
-  "More fake-book titles can be added later under the same Jewelry Book store.",
+  "A playful way to keep small treasures out of plain view.",
+  "Made for gift giving, personal storage, and secret little hiding spots.",
 ];
 
-const futureTitles = ["Ring of Fire", "Curious Ring", "More cover titles later"];
+const futureTitles = ["Ring of Fire", "Curious Ring", "More titles in the works"];
+const homeSectionIds = new Set(["home", "product", "buy"]);
 
 function getPageFromHash() {
   return window.location.hash === "#contact" ? "contact" : "home";
@@ -32,10 +33,13 @@ function App() {
     }
 
     if (window.location.hash !== "#contact") {
-      if (window.location.hash && window.location.hash !== "#home") {
+      const id = window.location.hash.replace("#", "");
+      if (window.location.hash && !homeSectionIds.has(id)) {
         window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#home`);
       }
-      window.scrollTo(0, 0);
+      if (!id || id === "home" || !homeSectionIds.has(id)) {
+        window.scrollTo(0, 0);
+      }
     }
   }, []);
 
@@ -46,7 +50,7 @@ function App() {
       const cameFromSiteClick = internalNavigation.current;
       internalNavigation.current = false;
 
-      if (nextPage === "home" && id && id !== "home" && !cameFromSiteClick) {
+      if (nextPage === "home" && id && !homeSectionIds.has(id) && !cameFromSiteClick) {
         window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}#home`);
         window.scrollTo({ top: 0, behavior: "auto" });
         setPage("home");
@@ -57,9 +61,12 @@ function App() {
 
       window.requestAnimationFrame(() => {
         if (nextPage === "home" && id && id !== "home") {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+          document.getElementById(id)?.scrollIntoView({
+            behavior: cameFromSiteClick ? "smooth" : "auto",
+            block: "start",
+          });
         } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.scrollTo({ top: 0, behavior: cameFromSiteClick ? "smooth" : "auto" });
         }
       });
     };
@@ -113,7 +120,7 @@ function HomePage({ onNavigate }) {
     <>
       <section className="panel hero" id="home">
         <div className="hero-copy">
-          <p className="eyebrow">Introductory Fake-Book Jewelry Storage</p>
+          <p className="eyebrow">Fake-Book Jewelry Storage</p>
           <h1>Hoarder of the Rings</h1>
           <p>
             A clever fake book for hiding rings, small keepsakes, and tiny treasures in plain sight.
@@ -129,6 +136,11 @@ function HomePage({ onNavigate }) {
         </div>
 
         <ProductBook />
+        <div className="hero-rings" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
       </section>
 
       <section className="panel section product-section" id="product">
@@ -157,15 +169,15 @@ function HomePage({ onNavigate }) {
 
       <section className="panel section buy-section" id="buy">
         <div className="buy-copy">
-          <p className="eyebrow">First Product Run</p>
+          <p className="eyebrow">Featured Product</p>
           <h2>Start with Hoarder of the Rings.</h2>
           <p>
-            This is the introductory Jewelry Book product. More fake titles can come later without
-            needing a separate website for every cover.
+            A fantasy-inspired fake book that turns ring storage into something clever, giftable,
+            and easy to hide in plain sight.
           </p>
           <div className="price-row">
             <span>$36.99</span>
-            <small>introductory product</small>
+            <small>limited introductory release</small>
           </div>
           <a className="button primary" href="#contact" onClick={onNavigate}>
             Request purchase details <ArrowRight size={18} />
@@ -185,11 +197,11 @@ function HomePage({ onNavigate }) {
       <section className="panel final-cta">
         <div className="final-card">
           <div>
-            <p className="eyebrow">Future Covers</p>
-            <h2>One store. More fake-book titles later.</h2>
+            <p className="eyebrow">More Covers</p>
+            <h2>Collectible hiding spots with a wink.</h2>
             <p>
-              Jewelry Book can grow into a small collection without splitting each title into its
-              own site.
+              Jewelry Book is built for clever cover concepts, useful storage, and little surprises
+              that feel right at home on a shelf.
             </p>
           </div>
           <div className="title-stack">
@@ -281,6 +293,16 @@ function useScrollMotion(page) {
     const update = () => {
       frame = 0;
       const height = window.innerHeight || 1;
+      const navProbeY = Math.min(86, height * 0.14);
+      const darkSection = document.querySelector(".buy-section");
+      let navOnDark = false;
+
+      if (darkSection) {
+        const darkRect = darkSection.getBoundingClientRect();
+        navOnDark = darkRect.top <= navProbeY && darkRect.bottom >= navProbeY;
+      }
+
+      document.documentElement.classList.toggle("nav-on-dark", navOnDark);
 
       panels.forEach((panel) => {
         const rect = panel.getBoundingClientRect();
@@ -314,6 +336,7 @@ function useScrollMotion(page) {
       window.removeEventListener("hashchange", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
       if (frame) window.cancelAnimationFrame(frame);
+      document.documentElement.classList.remove("nav-on-dark");
     };
   }, [page]);
 }
