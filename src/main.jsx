@@ -216,6 +216,8 @@ function HomePage({ onNavigate }) {
 }
 
 function ProductBook() {
+  const trayRings = ["diamond", "emerald", "pearl", "ruby", "gold", "black", "blue", "violet", "oval"];
+
   return (
     <div className="book-stage" aria-label="Hoarder of the Rings fake book product">
       <div className="book-back">
@@ -230,6 +232,15 @@ function ProductBook() {
         <h2>HOARDER<br />OF THE<br />RINGS</h2>
         <div className="ring" />
         <p>T.F. Roberts</p>
+      </div>
+      <div className="book-interior" aria-hidden="true">
+        <div className="page-frame">
+          <div className="ring-tray">
+            {trayRings.map((ringName) => (
+              <span className={`tray-ring ${ringName}`} key={ringName} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
