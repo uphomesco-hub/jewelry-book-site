@@ -4,13 +4,17 @@ import { ArrowRight, BookOpen, CheckCircle2, Gem, Mail, PackageCheck, ShieldChec
 import "./styles.css";
 
 const productNotes = [
-  "A fake display book made for rings and small keepsakes.",
-  "Designed to blend into a shelf, nightstand, office, or closet.",
-  "A playful way to keep small treasures out of plain view.",
-  "Made for gift giving, personal storage, and secret little hiding spots.",
+  "Dedicated velvet ring channels keep pieces separated and easy to find.",
+  "Helps reduce loose rattling, scratches, and everyday storage damage.",
+  "Keeps rings and small things organized, secure, and hidden in plain sight.",
+  "A useful gift for anyone who wants clever storage with personality.",
 ];
 
-const futureTitles = ["Ring of Fire", "Curious Ring", "More titles in the works"];
+const footerRings = [
+  "ring-1-blue-sapphire.png",
+  "ring-3-amber.png",
+  "ring-7-gold-band.png",
+];
 const homeSectionIds = new Set(["home", "product", "buy"]);
 
 function getPageFromHash() {
@@ -94,11 +98,7 @@ function Header({ page, onNavigate }) {
   return (
     <header className="site-header">
       <a className="brand" href="#home" aria-label="Jewelry Book home" onClick={onNavigate}>
-        <span className="brand-mark">JB</span>
-        <span>
-          Jewelry Book
-          <small>Hoard of the Rings</small>
-        </span>
+        <span>Jewelry Book</span>
       </a>
       <nav aria-label="Main navigation">
         <a href="#product" onClick={onNavigate}>
@@ -123,11 +123,11 @@ function HomePage({ onNavigate }) {
           <p className="eyebrow">Fake-Book Jewelry Storage</p>
           <h1>Hoard of the Rings</h1>
           <p>
-            A clever fake book for hiding rings, small keepsakes, and tiny treasures in plain sight.
+            Keep your precious rings and things safe, organized, and hidden in plain sight.
           </p>
           <div className="actions">
             <a className="button primary" href="#buy" onClick={onNavigate}>
-              Buy the first book <ArrowRight size={18} />
+              Buy the book <ArrowRight size={18} />
             </a>
             <a className="button secondary" href="#contact" onClick={onNavigate}>
               Ask a question
@@ -136,33 +136,28 @@ function HomePage({ onNavigate }) {
         </div>
 
         <ProductBook />
-        <div className="hero-rings" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
       </section>
 
       <section className="panel section product-section" id="product">
         <div className="section-heading">
           <p className="eyebrow">Jewelry Book</p>
-          <h2>A hiding spot that looks like it belongs on the shelf.</h2>
+          <h2>Safe, secure, and organized.</h2>
         </div>
         <div className="feature-grid">
           <article>
             <BookOpen size={26} />
-            <h3>Looks like a book</h3>
-            <p>Built around the look of a dramatic fantasy-style hardback, not a normal jewelry box.</p>
+            <h3>No loose rattling</h3>
+            <p>Other fake books let jewelry slide around loose. Hoard of the Rings gives each piece a place.</p>
           </article>
           <article>
             <Gem size={26} />
-            <h3>Made for rings</h3>
-            <p>Designed for ring storage first, with room for small keepsakes and personal treasures.</p>
+            <h3>Protects what matters</h3>
+            <p>Your jewelry is an investment, but it can also hold real sentimental value.</p>
           </article>
           <article>
             <ShieldCheck size={26} />
-            <h3>Hides in plain sight</h3>
-            <p>Place it on a shelf, desk, nightstand, or closet and let it disappear into the room.</p>
+            <h3>Hidden in plain sight</h3>
+            <p>Keep rings and small treasures tucked away inside a book that blends into your room.</p>
           </article>
         </div>
       </section>
@@ -172,11 +167,11 @@ function HomePage({ onNavigate }) {
           <p className="eyebrow">Featured Product</p>
           <h2>Start with Hoard of the Rings.</h2>
           <p>
-            A fantasy-inspired fake book that turns ring storage into something clever, giftable,
-            and easy to hide in plain sight.
+            A fantasy-inspired fake book with a soft ring tray inside, made to keep your rings
+            and small keepsakes safe, secure, and easy to find.
           </p>
           <div className="price-row">
-            <span>$36.99</span>
+            <span>$38.99</span>
             <small>limited introductory release</small>
           </div>
           <a className="button primary" href="#contact" onClick={onNavigate}>
@@ -194,23 +189,32 @@ function HomePage({ onNavigate }) {
         </div>
       </section>
 
-      <section className="panel final-cta">
-        <div className="final-card">
-          <div>
-            <p className="eyebrow">More Covers</p>
-            <h2>Collectible hiding spots with a wink.</h2>
+      <footer className="panel site-footer">
+        <div className="footer-stage">
+          <div className="footer-card">
+            <p className="eyebrow">Jewelry Book</p>
+            <h2>Keep your rings and things safe.</h2>
             <p>
-              Jewelry Book is built for clever cover concepts, useful storage, and little surprises
-              that feel right at home on a shelf.
+              Hoard of the Rings is the introductory Jewelry Book product: organized ring storage
+              hidden inside a fake book that belongs on the shelf.
             </p>
+            <a className="button primary" href="#contact" onClick={onNavigate}>
+              Contact for purchase details <ArrowRight size={18} />
+            </a>
           </div>
-          <div className="title-stack">
-            {futureTitles.map((title) => (
-              <span key={title}>{title}</span>
+          <div className="footer-rings" aria-hidden="true">
+            {footerRings.map((ring, index) => (
+              <img
+                key={ring}
+                src={`${import.meta.env.BASE_URL || "/"}assets/rings/${ring}`}
+                alt=""
+                style={{ "--ring-index": index }}
+                loading="lazy"
+              />
             ))}
           </div>
         </div>
-      </section>
+      </footer>
     </>
   );
 }
@@ -220,7 +224,7 @@ function ProductBook() {
   const assetBase = import.meta.env.BASE_URL || "/";
 
   React.useEffect(() => {
-    const timer = window.setTimeout(() => setIsOpen(true), 850);
+    const timer = window.setTimeout(() => setIsOpen(true), 550);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -259,9 +263,6 @@ function ProductBook() {
           </picture>
         </button>
       </div>
-      <button className="book-toggle" type="button" onClick={() => setIsOpen((current) => !current)}>
-        {isOpen ? "Close the book" : "Open the book"}
-      </button>
     </div>
   );
 }
