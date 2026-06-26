@@ -230,10 +230,11 @@ function ProductBook() {
         <div className="book-tray" aria-hidden={!isOpen}>
           <picture>
             <source
-              srcSet={`${assetBase}assets/hoard-ring-tray-sm.png 720w, ${assetBase}assets/hoard-ring-tray.png 1024w`}
+              type="image/webp"
+              srcSet={`${assetBase}assets/hoard-ring-tray-sm.webp 620w, ${assetBase}assets/hoard-ring-tray.webp 960w`}
               sizes="(max-width: 700px) 78vw, 36vw"
             />
-            <img src={`${assetBase}assets/hoard-ring-tray-sm.png`} alt="" />
+            <img src={`${assetBase}assets/hoard-ring-tray-sm.webp`} alt="" loading="eager" fetchPriority="high" />
           </picture>
         </div>
         <button
@@ -245,10 +246,16 @@ function ProductBook() {
         >
           <picture>
             <source
-              srcSet={`${assetBase}assets/hoard-front-cover-sm.png 620w, ${assetBase}assets/hoard-front-cover.png 1310w`}
+              type="image/webp"
+              srcSet={`${assetBase}assets/hoard-front-cover-sm.webp 620w, ${assetBase}assets/hoard-front-cover.webp 1280w`}
               sizes="(max-width: 700px) 68vw, 28vw"
             />
-            <img src={`${assetBase}assets/hoard-front-cover-sm.png`} alt="Hoard of the Rings book cover" />
+            <img
+              src={`${assetBase}assets/hoard-front-cover-sm.webp`}
+              alt="Hoard of the Rings book cover"
+              loading="eager"
+              fetchPriority="high"
+            />
           </picture>
         </button>
       </div>

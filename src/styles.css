@@ -280,6 +280,7 @@ p {
   display: grid;
   justify-items: center;
   gap: clamp(14px, 2vh, 22px);
+  width: min(100%, 620px);
   perspective: 1800px;
   opacity: var(--reveal-opacity);
   transform: translate3d(0, var(--reveal-y), 0) scale(var(--reveal-scale));
@@ -289,9 +290,10 @@ p {
 }
 
 .book-shell {
-  --book-w: clamp(340px, 34vw, 560px);
+  --book-fit-w: calc((100svh - var(--section-top) - var(--section-bottom) - 84px) * 0.68);
+  --book-w: min(clamp(320px, 30vw, 500px), var(--book-fit-w));
   position: relative;
-  width: var(--book-w);
+  width: min(100%, var(--book-w));
   aspect-ratio: 0.68;
   border-radius: clamp(18px, 2vw, 28px);
   transform-style: preserve-3d;
@@ -371,7 +373,7 @@ p {
 }
 
 .book-stage.is-open .book-cover {
-  transform: rotateY(-72deg) translateZ(3px);
+  transform: rotateY(-62deg) translateZ(3px);
 }
 
 .book-toggle {
@@ -738,7 +740,7 @@ p {
   }
 
   .book-shell {
-    --book-w: clamp(500px, 31vw, 660px);
+    --book-w: min(clamp(440px, 27vw, 540px), var(--book-fit-w));
   }
 
   .feature-grid {
@@ -792,7 +794,7 @@ p {
   }
 
   .book-shell {
-    --book-w: min(72vw, 500px);
+    --book-w: min(68vw, 440px, var(--book-fit-w));
   }
 
   .hero-rings span {
@@ -892,11 +894,11 @@ p {
   }
 
   .book-shell {
-    --book-w: min(70vw, 330px);
+    --book-w: min(56vw, 260px);
   }
 
   .book-stage.is-open .book-cover {
-    transform: rotateY(-70deg) translateZ(3px);
+    transform: rotateY(-58deg) translateZ(3px);
   }
 
   .hero-rings span {
