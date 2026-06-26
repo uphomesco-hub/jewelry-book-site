@@ -97,7 +97,7 @@ function Header({ page, onNavigate }) {
         <span className="brand-mark">JB</span>
         <span>
           Jewelry Book
-          <small>Hoarder of the Rings</small>
+          <small>Hoard of the Rings</small>
         </span>
       </a>
       <nav aria-label="Main navigation">
@@ -121,7 +121,7 @@ function HomePage({ onNavigate }) {
       <section className="panel hero" id="home">
         <div className="hero-copy">
           <p className="eyebrow">Fake-Book Jewelry Storage</p>
-          <h1>Hoarder of the Rings</h1>
+          <h1>Hoard of the Rings</h1>
           <p>
             A clever fake book for hiding rings, small keepsakes, and tiny treasures in plain sight.
           </p>
@@ -170,7 +170,7 @@ function HomePage({ onNavigate }) {
       <section className="panel section buy-section" id="buy">
         <div className="buy-copy">
           <p className="eyebrow">Featured Product</p>
-          <h2>Start with Hoarder of the Rings.</h2>
+          <h2>Start with Hoard of the Rings.</h2>
           <p>
             A fantasy-inspired fake book that turns ring storage into something clever, giftable,
             and easy to hide in plain sight.
@@ -216,21 +216,45 @@ function HomePage({ onNavigate }) {
 }
 
 function ProductBook() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const assetBase = import.meta.env.BASE_URL || "/";
+
+  React.useEffect(() => {
+    const timer = window.setTimeout(() => setIsOpen(true), 850);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="book-stage" aria-label="Hoarder of the Rings fake book product">
-      <div className="book-back">
-        <span className="back-price">$36.99</span>
+    <div className={`book-stage ${isOpen ? "is-open" : ""}`} aria-label="Hoard of the Rings fake book product">
+      <div className="book-shell">
+        <div className="book-tray" aria-hidden={!isOpen}>
+          <picture>
+            <source
+              srcSet={`${assetBase}assets/hoard-ring-tray-sm.png 720w, ${assetBase}assets/hoard-ring-tray.png 1024w`}
+              sizes="(max-width: 700px) 78vw, 36vw"
+            />
+            <img src={`${assetBase}assets/hoard-ring-tray-sm.png`} alt="" />
+          </picture>
+        </div>
+        <button
+          className="book-cover"
+          type="button"
+          aria-pressed={isOpen}
+          aria-label={isOpen ? "Close the jewelry book" : "Open the jewelry book"}
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          <picture>
+            <source
+              srcSet={`${assetBase}assets/hoard-front-cover-sm.png 620w, ${assetBase}assets/hoard-front-cover.png 1310w`}
+              sizes="(max-width: 700px) 68vw, 28vw"
+            />
+            <img src={`${assetBase}assets/hoard-front-cover-sm.png`} alt="Hoard of the Rings book cover" />
+          </picture>
+        </button>
       </div>
-      <div className="book-spine">
-        <span>HOARDER OF THE RINGS</span>
-      </div>
-      <div className="book-cover">
-        <div className="cover-rings" />
-        <span className="cover-kicker">Thou shall not toucheth</span>
-        <h2>HOARDER<br />OF THE<br />RINGS</h2>
-        <div className="ring" />
-        <p>T.F. Roberts</p>
-      </div>
+      <button className="book-toggle" type="button" onClick={() => setIsOpen((current) => !current)}>
+        {isOpen ? "Close the book" : "Open the book"}
+      </button>
     </div>
   );
 }
