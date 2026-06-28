@@ -133,7 +133,7 @@ main {
   scroll-snap-align: start;
 }
 
-.panel > :not(.book-stage, .feature-grid, .buy-panel, .contact-form, .footer-stage) {
+.panel > :not(.book-stage, .feature-grid, .buy-panel, .buy-product-art, .contact-form, .footer-stage) {
   opacity: var(--reveal-opacity);
   transform: translate3d(0, var(--reveal-y), 0) scale(var(--reveal-scale));
   transition:
@@ -257,6 +257,12 @@ p {
 .footer-card p {
   max-width: 620px;
   font-size: clamp(17px, 1.35vw, 21px);
+}
+
+.hero-copy > p:not(.eyebrow) {
+  max-width: 720px;
+  font-size: clamp(22px, 2vw, 34px);
+  line-height: 1.28;
 }
 
 .actions {
@@ -458,7 +464,7 @@ p {
 
 .buy-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.72fr);
+  grid-template-columns: minmax(0, 0.86fr) minmax(400px, 0.86fr);
   gap: clamp(34px, 5vw, 74px);
   align-items: center;
   background:
@@ -469,6 +475,17 @@ p {
 .buy-section h2,
 .buy-section .buy-copy > p {
   color: #fff;
+}
+
+.buy-copy h2 {
+  max-width: 820px;
+  font-size: clamp(34px, 4.2vw, 72px);
+}
+
+.buy-coming-soon {
+  margin-bottom: 12px;
+  color: #e8bf6a;
+  font-weight: 900;
 }
 
 .buy-section .eyebrow {
@@ -493,6 +510,27 @@ p {
   color: rgba(255, 255, 255, 0.72);
   font-weight: 850;
   text-transform: uppercase;
+}
+
+.gift-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  max-width: 620px;
+  margin: 26px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.gift-note svg {
+  flex: 0 0 auto;
+  color: #e8bf6a;
 }
 
 .buy-panel {
@@ -524,6 +562,61 @@ p {
 .buy-panel svg {
   flex: 0 0 auto;
   color: #e8bf6a;
+}
+
+.buy-product-art {
+  position: relative;
+  min-height: clamp(360px, 45vw, 640px);
+  opacity: var(--reveal-opacity);
+  transform: translate3d(0, var(--reveal-y), 0) scale(var(--reveal-scale));
+  transition:
+    opacity 460ms ease,
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.buy-product-art::before {
+  content: "";
+  position: absolute;
+  inset: 18% 3% 5% 8%;
+  border-radius: 999px;
+  background: rgba(214, 164, 79, 0.24);
+  filter: blur(54px);
+}
+
+.buy-product-art picture,
+.buy-product-art img {
+  display: block;
+}
+
+.buy-product-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.buy-tray-image,
+.buy-cover-image {
+  position: absolute;
+  overflow: hidden;
+  border-radius: clamp(18px, 2vw, 28px);
+  box-shadow: 0 28px 58px rgba(0, 0, 0, 0.28);
+}
+
+.buy-tray-image {
+  right: 0;
+  top: 8%;
+  width: min(72%, 520px);
+  aspect-ratio: 0.68;
+  border: clamp(7px, 0.8vw, 12px) solid #d7bd83;
+  background: #0b0908;
+}
+
+.buy-cover-image {
+  left: 0;
+  bottom: 4%;
+  width: min(44%, 300px);
+  aspect-ratio: 0.68;
+  transform: rotate(-4deg);
 }
 
 .site-footer {
@@ -934,6 +1027,57 @@ p {
     gap: 6px;
   }
 
+  .buy-section {
+    gap: 14px;
+    padding-top: var(--section-top);
+    padding-bottom: 18px;
+  }
+
+  .buy-copy h2 {
+    margin-bottom: 10px;
+    font-size: clamp(36px, 11vw, 50px);
+  }
+
+  .buy-coming-soon,
+  .buy-copy > p:not(.eyebrow):not(.gift-note) {
+    font-size: 15px;
+    line-height: 1.42;
+  }
+
+  .buy-coming-soon {
+    margin-bottom: 8px;
+  }
+
+  .gift-note {
+    margin-top: 12px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .price-row {
+    margin: 16px 0 14px;
+  }
+
+  .price-row span {
+    font-size: 48px;
+  }
+
+  .buy-product-art {
+    min-height: 190px;
+  }
+
+  .buy-tray-image {
+    right: 12%;
+    top: 0;
+    width: 38%;
+  }
+
+  .buy-cover-image {
+    left: 24%;
+    bottom: 0;
+    width: 28%;
+  }
+
   .site-footer {
     min-height: 100svh;
     padding-top: var(--section-top);
@@ -1019,6 +1163,14 @@ p {
     --book-leaf: min(46vw, 172px);
   }
 
+  .buy-copy h2 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
+  .buy-product-art {
+    min-height: 170px;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1026,10 +1178,11 @@ p {
     scroll-behavior: auto;
   }
 
-  .panel > :not(.book-stage, .feature-grid, .buy-panel, .contact-form, .footer-stage),
+  .panel > :not(.book-stage, .feature-grid, .buy-panel, .buy-product-art, .contact-form, .footer-stage),
   .book-stage,
   .feature-grid,
   .buy-panel,
+  .buy-product-art,
   .contact-form,
   .footer-stage {
     transition: none;

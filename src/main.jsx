@@ -3,13 +3,6 @@ import { createRoot } from "react-dom/client";
 import { ArrowRight, BookOpen, CheckCircle2, Gem, Mail, PackageCheck, ShieldCheck } from "lucide-react";
 import "./styles.css";
 
-const productNotes = [
-  "Dedicated velvet ring channels keep pieces separated and easy to find.",
-  "Helps reduce loose rattling, scratches, and everyday storage damage.",
-  "Keeps rings and small things organized, secure, and hidden in plain sight.",
-  "A useful gift for anyone who wants clever storage with personality.",
-];
-
 const footerRings = [
   "ring-1-blue-sapphire.png",
   "ring-3-amber.png",
@@ -102,7 +95,7 @@ function Header({ page, onNavigate }) {
       </a>
       <nav aria-label="Main navigation">
         <a href="#product" onClick={onNavigate}>
-          Product
+          Products
         </a>
         <a href="#buy" onClick={onNavigate}>
           Buy
@@ -120,10 +113,11 @@ function HomePage({ onNavigate }) {
     <>
       <section className="panel hero" id="home">
         <div className="hero-copy">
-          <p className="eyebrow">Fake-Book Jewelry Storage</p>
-          <h1>Hoard of the Rings</h1>
+          <p className="eyebrow">Rings, Things, and Keepsakes</p>
+          <h1>Jewelry Storage</h1>
           <p>
             Keep your precious rings and things safe, organized, and hidden in plain sight.
+            A fantasy-inspired Jewelry Book with a soft ring tray inside.
           </p>
           <div className="actions">
             <a className="button primary" href="#buy" onClick={onNavigate}>
@@ -141,23 +135,23 @@ function HomePage({ onNavigate }) {
       <section className="panel section product-section" id="product">
         <div className="section-heading">
           <p className="eyebrow">Jewelry Book</p>
-          <h2>Safe, secure, and organized.</h2>
+          <h2>Safe, Secure, and Organized.</h2>
         </div>
         <div className="feature-grid">
           <article>
             <BookOpen size={26} />
             <h3>No loose rattling</h3>
-            <p>Other fake books let jewelry slide around loose. Hoard of the Rings gives each piece a place.</p>
+            <p>Other fake books let jewelry slide around loose. Our Jewelry Book holds rings in place.</p>
           </article>
           <article>
             <Gem size={26} />
             <h3>Protects what matters</h3>
-            <p>Your jewelry is an investment, but it can also hold real sentimental value.</p>
+            <p>Your jewelry is an investment, but it can also hold real sentimental value. Our Jewelry Book helps prevent damage.</p>
           </article>
           <article>
             <ShieldCheck size={26} />
             <h3>Hidden in plain sight</h3>
-            <p>Keep rings and small treasures tucked away inside a book that blends into your room.</p>
+            <p>Keep rings and small treasures tucked away inside our Jewelry Book that blends in any room.</p>
           </article>
         </div>
       </section>
@@ -166,9 +160,13 @@ function HomePage({ onNavigate }) {
         <div className="buy-copy">
           <p className="eyebrow">Featured Product</p>
           <h2>Start with Hoard of the Rings.</h2>
+          <p className="buy-coming-soon">Additional titles for your other treasures coming soon.</p>
           <p>
-            A fantasy-inspired fake book with a soft ring tray inside, made to keep your rings
-            and small keepsakes safe, secure, and easy to find.
+            Hoard of the Rings is the introductory Jewelry Book release, made for useful storage with a little personality.
+          </p>
+          <p className="gift-note">
+            <CheckCircle2 size={20} />
+            Great gift idea for anyone who wants clever storage with personality.
           </p>
           <div className="price-row">
             <span>$38.99</span>
@@ -178,14 +176,23 @@ function HomePage({ onNavigate }) {
             Request purchase details <ArrowRight size={18} />
           </a>
         </div>
-        <div className="buy-panel">
-          <p className="eyebrow">What you get</p>
-          {productNotes.map((note) => (
-            <p key={note}>
-              <CheckCircle2 size={20} />
-              {note}
-            </p>
-          ))}
+        <div className="buy-product-art" aria-hidden="true">
+          <picture className="buy-tray-image">
+            <source
+              type="image/webp"
+              srcSet={`${import.meta.env.BASE_URL || "/"}assets/hoard-ring-tray-sm.webp 620w, ${import.meta.env.BASE_URL || "/"}assets/hoard-ring-tray.webp 960w`}
+              sizes="(max-width: 980px) 84vw, 34vw"
+            />
+            <img src={`${import.meta.env.BASE_URL || "/"}assets/hoard-ring-tray-sm.webp`} alt="" loading="lazy" />
+          </picture>
+          <picture className="buy-cover-image">
+            <source
+              type="image/webp"
+              srcSet={`${import.meta.env.BASE_URL || "/"}assets/hoard-front-cover-sm.webp 620w, ${import.meta.env.BASE_URL || "/"}assets/hoard-front-cover.webp 1280w`}
+              sizes="(max-width: 980px) 42vw, 16vw"
+            />
+            <img src={`${import.meta.env.BASE_URL || "/"}assets/hoard-front-cover-sm.webp`} alt="" loading="lazy" />
+          </picture>
         </div>
       </section>
 
@@ -280,7 +287,7 @@ function ContactPage({ sent, setSent }) {
           </p>
           <p>
             <PackageCheck size={20} />
-            Purchase, wholesale, and launch questions
+            Purchase, wholesale, and product launch questions
           </p>
         </div>
       </div>
