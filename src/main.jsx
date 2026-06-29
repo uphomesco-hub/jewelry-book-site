@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { ArrowRight, BookOpen, CheckCircle2, Gem, Mail, PackageCheck, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Gem, Mail, PackageCheck, ShieldCheck } from "lucide-react";
 import "./styles.css";
 
 const footerRings = [
@@ -116,8 +116,8 @@ function HomePage({ onNavigate }) {
           <p className="eyebrow">Rings, Things, and Keepsakes</p>
           <h1>Jewelry Storage</h1>
           <p>
-            Keep your precious rings and things safe, organized, and hidden in plain sight.
-            A fantasy-inspired Jewelry Book with a soft ring tray inside.
+            Keep your precious rings and things safe, organized, and hidden in plain sight with
+            our fantasy-inspired Jewelry Book.
           </p>
           <div className="actions">
             <a className="button primary" href="#buy" onClick={onNavigate}>
@@ -146,7 +146,7 @@ function HomePage({ onNavigate }) {
           <article>
             <Gem size={26} />
             <h3>Protects what matters</h3>
-            <p>Your jewelry is an investment, but it can also hold real sentimental value. Our Jewelry Book helps prevent damage.</p>
+            <p>Your jewelry is an investment, but it can also hold real sentimental value. Our Jewelry Book helps prevent damage and loss.</p>
           </article>
           <article>
             <ShieldCheck size={26} />
@@ -162,10 +162,9 @@ function HomePage({ onNavigate }) {
           <h2>Start with Hoard of the Rings.</h2>
           <p className="buy-coming-soon">Additional titles for your other treasures coming soon.</p>
           <p>
-            Hoard of the Rings is the introductory Jewelry Book release, made for useful storage with a little personality.
+            Hoard of the Rings is our introductory Jewelry Book release. Safe storage with a little personality.
           </p>
           <p className="gift-note">
-            <CheckCircle2 size={20} />
             Great gift idea for anyone who wants clever storage with personality.
           </p>
           <div className="price-row">
@@ -202,8 +201,8 @@ function HomePage({ onNavigate }) {
             <p className="eyebrow">Jewelry Book</p>
             <h2>Keep your rings and things safe.</h2>
             <p>
-              Hoard of the Rings is the introductory Jewelry Book product: organized ring storage
-              hidden inside a fake book that belongs on the shelf.
+              Hoard of the Rings is our introductory Jewelry Book. It's an organized ring storage
+              system, inside a fake book, that hides its treasures in plain sight.
             </p>
             <a className="button primary" href="#contact" onClick={onNavigate}>
               Contact for purchase details <ArrowRight size={18} />
@@ -283,7 +282,7 @@ function ContactPage({ sent, setSent }) {
         <div className="contact-points">
           <p>
             <Mail size={20} />
-            hello@jewelry-book.com
+            info@jewelry-book.com
           </p>
           <p>
             <PackageCheck size={20} />

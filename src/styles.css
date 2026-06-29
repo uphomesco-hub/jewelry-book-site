@@ -513,24 +513,12 @@ p {
 }
 
 .gift-note {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: fit-content;
   max-width: 620px;
-  margin: 26px 0 0;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  font-weight: 850;
-  line-height: 1.35;
-}
-
-.gift-note svg {
-  flex: 0 0 auto;
-  color: #e8bf6a;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(18px, 1.35vw, 24px);
+  font-weight: 900;
+  line-height: 1.28;
 }
 
 .buy-panel {
@@ -1049,9 +1037,9 @@ p {
   }
 
   .gift-note {
-    margin-top: 12px;
-    padding: 12px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.35;
   }
 
   .price-row {
